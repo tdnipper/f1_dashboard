@@ -95,7 +95,9 @@ for driver in stint_data["driver_number"].unique():
                 # Select the color based on the compound and the color dictionary using the first value in the compound column
                 marker_color=compound_colors[stint_info["compound"].iloc[0]],
                 # Add the hover text with the stint information
-                hovertext=f"Duration: {stint_info['stint_duration']}<br>Start: {stint_info['lap_start']}<br>End: {stint_info['lap_end']}<br>Compound: {stint_info['compound']}<br>Driver: {stint_info['driver_number']}"
+                hovertext=f"Duration: {stint_info['stint_duration'].values[0]} laps<br>Start: {stint_info['lap_start'].values[0]}<br>End: {stint_info['lap_end'].values[0]}<br>Compound: {stint_info['compound'].values[0]}<br>Driver: {stint_info['driver_number'].values[0]}",
+                # Display only the custom text on hover
+                hoverinfo="text",
             )
         )
 # Update the layout with the title and axis labels and show the figure
@@ -105,6 +107,6 @@ fig_stint.update_layout(
     yaxis_title="Laps",
     showlegend=False,
     barmode="stack",
-
+    hovermode="x",
 )
 fig_stint.show()
