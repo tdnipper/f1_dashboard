@@ -78,7 +78,11 @@ stint_data.to_csv("stint_data.csv")
 from plotly import graph_objects as go
 
 fig_stint = go.Figure()
-compound_colors = {"SOFT": "green", "MEDIUM": "blue", "HARD": "red"}
+# compound_colors = {"SOFT": "green", "MEDIUM": "blue", "HARD": "red"}
+# Use the qualitative color swatch from plotly express for the compounds
+color_swatch = px.colors.qualitative.G10
+# Create a dictionary with the compound as the key and the color as the value
+compound_colors = {compound: color_swatch[i] for i, compound in enumerate(stint_data["compound"].unique())}
 for driver in stint_data["driver_number"].unique():
     # Get the data for the driver and loop over each stint
     driver_data = stint_data[stint_data["driver_number"] == driver]
