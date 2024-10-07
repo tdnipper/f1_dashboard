@@ -51,11 +51,11 @@ stint_data["stint_duration"] = stint_data["lap_end"] - stint_data["lap_start"]
 stint_data["driver_number"] = stint_data["driver_number"].astype(str)
 stint_data["stint_number"] = stint_data["stint_number"].astype(str)
 
-stint_data = stint_data.groupby(["driver_number", "stint_number", "compound"]).agg({
-    "stint_duration": "sum",
-    "lap_start": "min",
-    "lap_end": "max"
-}).reset_index()
+stint_data = (
+    stint_data.groupby(["driver_number", "stint_number", "compound"])
+    .agg({"stint_duration": "sum", "lap_start": "min", "lap_end": "max"})
+    .reset_index()
+)
 stint_data.to_csv("stint_data.csv")
 
 # Plot the data
@@ -76,12 +76,9 @@ stint_data.to_csv("stint_data.csv")
 # First loop over each driver, then each stint for that driver
 # Add a bar for each stint with the compound color and the hover text
 from plotly import graph_objects as go
+
 fig_stint = go.Figure()
-compound_colors = {
-    'SOFT': 'green',
-    'MEDIUM': 'blue',
-    'HARD': 'red'
-}
+compound_colors = {"SOFT": "green", "MEDIUM": "blue", "HARD": "red"}
 for driver in stint_data["driver_number"].unique():
     # Get the data for the driver and loop over each stint
     driver_data = stint_data[stint_data["driver_number"] == driver]
