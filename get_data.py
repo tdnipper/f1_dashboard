@@ -34,7 +34,7 @@ def fetch_stint_data(session_key):
         raise ValueError(f"Error fetching data. Status code {response.status_code}")
 
 # Fetch position data for a given session key
-def get_position_data(session_key):
+def fetch_position_data(session_key):
     url= f"https://api.openf1.org/v1/positions?session_key={session_key}"
     response = requests.get(url)
     if response.status_code == 200:
