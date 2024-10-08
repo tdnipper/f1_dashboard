@@ -1,6 +1,9 @@
 import pandas as pd
 import requests
 
+if __name__ == "__main__":
+    print("This script is not meant to be run directly.")
+
 # Get the session key for a given country, session type and year
 def fetch_session_key(country, session_type, year):
     url = f"https://api.openf1.org/v1/sessions?country_name={country}&session_name={session_type}&year={year}"
