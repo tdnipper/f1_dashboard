@@ -13,7 +13,7 @@ def fetch_session_key(country, session_type, year):
         )
 
 # Fetch data for a given data type, driver number and session key
-def fetch_data(data_type, drive_number, session_key):
+def fetch_race_data(data_type, drive_number, session_key):
     url = f"https://api.openf1.org/v1/{data_type}?driver_number={drive_number}&session_key={session_key}"
     response = requests.get(url)
     if response.status_code == 200:
