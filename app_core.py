@@ -1,14 +1,18 @@
 from get_data import *
+import plotly.express as px
 
+# Set the parameters for the data fetch
 country = "Italy"
 session_type = "Race"
 year = "2023"
 
+# Fetch the session key for the given parameters
 session_key = fetch_session_key(country, session_type, year)
 
-race_data = fetch_data("laps", "55", session_key)
-# Plot the race data
+# Fetch the race data for the specified driver
+race_data = fetch_race_data("laps", "55", session_key)
 
+# Plot the race data
 fig_race = px.scatter(
     race_data,
     x="lap_number",
